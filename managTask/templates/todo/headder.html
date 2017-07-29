@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo ListManager</title>
+    <!--<link rel="stylesheet" type="text/css" href="style.css">-->
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <script src="{% static 'bootstrap/js/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'homepage:index' %}">TODO Manager</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{% url 'homepage:index' %}">Home</a></li>
+                {% if session_set %}
+                <li><a  data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> Add Task</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Today task's <i class="fa fa-th-list" aria-hidden="true"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Page 1-1</a></li>
+                        <li><a href="#">Page 1-2</a></li>
+                        <li><a href="#">Page 1-3</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> Calender</a></li>
+                {% endif %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if session_set %}
+                    <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i>
+                    Welcome {% block username %}{% endblock %}</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+               {% else %}
+                <li><a href="{% url 'homepage:signup' %}"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</a></li>
+                <li><a href="{% url 'homepage:login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+               {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% block body %}
+{% endblock %}
+ <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add New task</h4>
+        </div>
+          <form method="post" action="{% url 'manage:addTask' %}">
+        <div class="modal-body">
+                    {%  csrf_token %}
+                    <input name="title_task" class="form-control" required placeholder="Enter Title fo task">
+                    <textarea name="details_task" class="form-control" required placeholder="Enter task todo"></textarea>
+                    <input name="date_task" class="form-control" type="date" required placeholder="Enter date of task">
+        </div>
+        <div class="modal-footer">
+            <input class="btn btn-success" type="submit" value="+ Add Task">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+              </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

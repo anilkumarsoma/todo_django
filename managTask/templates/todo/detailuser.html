@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User details</title>
+</head>
+<body>
+Hi :- {{ user.username }}<br>
+Your id is : {{ user.id }}<br>
+Email: {{ user.email }}
+<br><b>
+Your Task's:</b>
+<ol>
+    {% for t in user.task_set.all %}
+        <li>{{ t.task }} <b>{{ t.date }}</b></li>
+    {% endfor %}
+</ol>
+
+
+</body>
+</html>

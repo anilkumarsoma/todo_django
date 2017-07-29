@@ -1,0 +1,30 @@
+{% extends 'todo/headder.html' %}
+
+{% block username %}
+    {{ session_set }}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2>Today Task's</h2>
+    <div class="list-group">
+        {% for t in user.task_set.all %}
+            <div class="task">
+            <div class="rt action_icons">
+                <span class="cd glyphicon glyphicon-edit"></span>
+                <span class="cd glyphicon glyphicon-remove"></span>
+            </div>
+                <div class="rt task_title">{{ t.status}}</div>
+                <div class="rt task_body"><b>{{ t.date }}</b></div>
+                <div class="rt task_body">{{ t.task }}</div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+<!--<ul>-->
+    <!--{% for user in all_users %}-->
+    <!--<li><a href="/manage/{{ user.id }}/">{{ user.username }}</a></li>-->
+    <!--<li><a href="{% url 'manage:details_user' user.id %}">{{ user.username }}</a></li>-->
+    <!--{% endfor %}-->
+<!--</ul>-->

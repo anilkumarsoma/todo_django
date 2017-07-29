@@ -1,0 +1,50 @@
+body{
+    background-image: url("images/back1.jpg");
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center center center;
+}
+.task{
+    float: left;
+    width: 200px;
+    height: 200px;
+    background-image: url("images/paper_back.png");
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    display: inline-block;
+    margin-left: 20px;
+}
+.rt{
+    -ms-transform: rotate(-10deg); /* IE 9 */
+    -webkit-transform: rotate(-10deg); /* Safari */
+    transform: rotate(-10deg); /* Standard syntax */
+}
+.task_title{
+    margin-top: 5px;
+    font-size: 28px;
+    text-transform: capitalize;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+}
+.task_body{
+    margin-left: 15px;
+    /*border: 2px solid black;*/
+}
+.action_icons{
+    margin-top: 10px;
+    height: 20px;
+    margin-left: 60%;
+}
+.cd{
+    margin-left: 5px;
+}
+.glyphicon{
+    cursor:pointer;
+}
+.glyphicon-edit:hover{
+    color: deepskyblue;
+}
+.glyphicon-remove:hover{
+    color: red;
+}
